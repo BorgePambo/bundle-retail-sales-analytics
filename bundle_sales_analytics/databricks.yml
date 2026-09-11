@@ -34,5 +34,7 @@ targets:
       catalog: retails_sales_prod
       schema: prod
     permissions:
+      - service_principal_name: github-actions-prod
+        level: CAN_MANAGE
       - user_name: ambrosiopambo23@gmail.com
         level: CAN_MANAGE
