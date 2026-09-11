@@ -24,7 +24,7 @@ AS SELECT
   `Localidade` AS localidade,
   current_timestamp() AS ingested_timestamp
 FROM STREAM read_files(
-  '/Volumes/retails_sales_dev/default/raw/erp/',
+  '${var.raw_path}',
   format => 'csv',
   header => true,
   inferSchema => false,
