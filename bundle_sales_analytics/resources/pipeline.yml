@@ -7,6 +7,7 @@ resources:
       development: false
       catalog: ${var.catalog}
       schema: ${var.schema}
+      allow_duplicate_names: true
 
       libraries:
         - file:
