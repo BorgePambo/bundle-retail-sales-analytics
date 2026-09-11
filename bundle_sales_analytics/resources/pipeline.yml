@@ -1,0 +1,32 @@
+resources:
+  pipelines:
+    sales_pipeline:
+      name: sales_pipeline
+      serverless: true
+      continuous: false
+      development: false
+      catalog: ${var.catalog}
+      schema: ${var.schema}
+
+      libraries:
+        - file:
+            path: ../src/transformations/bronze/sales_retails.sql
+        - file:
+            path: ../src/transformations/silver/sales_retails.sql
+        - file:
+            path: ../src/transformations/gold/dim_produto.sql
+        - file:
+            path: ../src/transformations/gold/dim_cliente.sql
+        - file:
+            path: ../src/transformations/gold/dim_localidade.sql
+        - file:
+            path: ../src/transformations/gold/dim_tempo.sql
+        - file:
+            path: ../src/transformations/gold/fct_vendas.sql
+
+      configuration:
+        bundle.sourcePath: ../src/transformations
+
+      filters:
+        include:
+          - ../src/transformations/**

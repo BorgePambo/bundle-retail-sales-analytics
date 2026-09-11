@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "databricks-sql": {
+      "type": "http",
+      "url": "https://dbc-aab5aa5a-ee27.cloud.databricks.com/api/2.0/mcp/sql"
+    }
+  }
+}
