@@ -22,6 +22,7 @@ targets:
     variables:
       catalog: retails_sales_dev
       schema: bronze
+      raw_path: /Volumes/retails_sales_dev/default/raw/erp/
     presets:
       trigger_pause_status: PAUSED
 
@@ -29,11 +30,11 @@ targets:
     mode: production
     workspace:
       host: https://dbc-f487d229-146e.cloud.databricks.com
-      # We explicitly deploy to /Workspace/Users/ambrosiopambo23@gmail.com to make sure we only have a single copy.
       root_path: /Workspace/.bundle/${bundle.name}/${bundle.target}
     variables:
       catalog: retails_sales_prod
       schema: bronze
+      raw_path: /Volumes/retails_sales_prod/default/raw/erp/
 
     permissions:
       - service_principal_name: a3ca6e56-0e47-4431-bdb3-0e0f02ec49a2
