@@ -1,5 +1,7 @@
+
 # This is a Declarative Automation Bundle definition for bundle_sales_analytics.
 # See https://docs.databricks.com/dev-tools/bundles/index.html for documentation.
+
 bundle:
   name: bundle_sales_analytics
   uuid: 1391d4ce-eb8e-4af8-b701-065c33fdc40b
@@ -7,30 +9,35 @@ bundle:
 include:
   - resources/*.yml
 
-# Variable declarations. These variables are assigned in the dev/prod targets below.
 variables:
   catalog:
     description: The catalog to use
   schema:
     description: The schema to use
+  raw_path:
+    description: The raw data volume path
 
 targets:
   dev:
     default: true
     workspace:
       host: https://dbc-f487d229-146e.cloud.databricks.com
+
     variables:
       catalog: retails_sales_dev
       schema: bronze
       raw_path: /Volumes/retails_sales_dev/default/raw/erp/
+
     presets:
       trigger_pause_status: PAUSED
 
   prod:
     mode: production
+
     workspace:
       host: https://dbc-f487d229-146e.cloud.databricks.com
       root_path: /Workspace/.bundle/${bundle.name}/${bundle.target}
+
     variables:
       catalog: retails_sales_prod
       schema: bronze
@@ -39,5 +46,6 @@ targets:
     permissions:
       - service_principal_name: a3ca6e56-0e47-4431-bdb3-0e0f02ec49a2
         level: CAN_MANAGE
+
       - user_name: ambrosiopambo23@gmail.com
         level: CAN_MANAGE
