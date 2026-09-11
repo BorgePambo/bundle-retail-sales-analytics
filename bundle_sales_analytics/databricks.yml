@@ -22,7 +22,8 @@ targets:
     variables:
       catalog: retails_sales_dev
       schema: bronze
-
+    presets:
+      trigger_pause_status: PAUSED
 
   prod:
     mode: production
@@ -32,9 +33,10 @@ targets:
       root_path: /Workspace/.bundle/${bundle.name}/${bundle.target}
     variables:
       catalog: retails_sales_prod
-      schema: prod
+      schema: bronze
+
     permissions:
-      - service_principal_name: github-actions-prod
+      - service_principal_name: a3ca6e56-0e47-4431-bdb3-0e0f02ec49a2
         level: CAN_MANAGE
       - user_name: ambrosiopambo23@gmail.com
         level: CAN_MANAGE
