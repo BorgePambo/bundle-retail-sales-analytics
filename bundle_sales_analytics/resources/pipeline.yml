@@ -31,3 +31,30 @@ resources:
       filters:
         include:
           - ../src/transformations/**
+
+  jobs:
+    ml_training_job:
+      name: ml-training-purchase-propensity
+      description: "Treina modelo de probabilidade de compra usando scikit-learn e MLflow"
+      tags:
+        project: retail_sales_analytics
+        ml_task: classification
+        model_type: purchase_propensity
+
+      task_key: training
+      new_cluster:
+        spark_version: "3.5.0-scala2.12"
+        node_type_id: "i3.xlarge"
+        num_workers: 2
+        spark_conf:
+          spark.databricks.delta.frontend.preview.enabled: true
+          spark.databricks.delta.retentionDurationCheck.enabled: false
+
+      python_wheel:
+        path: ../src/ml/requirements.txt
+
+      python_task:
+        notebook:
+          path: ../src/ml/notebooks/ml_pipeline.ipynb
+        parameters:
+          catalog: ${var.catalog}
